@@ -1,3 +1,4 @@
+id,Station,Benzene,CO,PM10,PM2.5,NO2,Datetime
 1,Araçatuba,,,30,,,7,2013-05-08 1:00:00
 2,Araçatuba,,,30,,,6,2013-05-08 2:00:00
 3,Araçatuba,,,31,,,6,2013-05-08 3:00:00
