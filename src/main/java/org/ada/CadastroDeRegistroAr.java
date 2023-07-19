@@ -3,6 +3,7 @@ package org.ada;
 
 import org.ada.dto.AirQuality;
 import org.ada.map.Mapa;
+import org.ada.sort_collections.Ordenacao;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -23,6 +24,8 @@ public class CadastroDeRegistroAr {
     private final String OPCAO_CADASTRAR_EM_LOTE = "3";
     private final String OPCAO_BUSCA_POR_ID = "4";
     private final String OPCAO_BUSCA_POR_STATION = "5";
+
+    private final String OPCAO_ORDENACAO = "6";
 
     public CadastroDeRegistroAr(EntradaDeDados leitor){
         this.leitor = leitor;
@@ -64,6 +67,9 @@ public class CadastroDeRegistroAr {
             case OPCAO_BUSCA_POR_STATION:
                 buscaPorTitleHashMap();
                 break;
+            case OPCAO_ORDENACAO:
+                classificar();
+                break;
             default:
                 opcaoInvalida();
                 break;
@@ -86,6 +92,20 @@ public class CadastroDeRegistroAr {
         for (AirQuality airQuality : airQualities){
             inserirRegistro(airQuality);
         }
+    }
+
+    private void classificar(){
+        System.out.print("Classificando: ");
+        // Criar uma instância da classe Ordenacao
+        Ordenacao<AirQuality> ordenacao = new Ordenacao<>();
+
+        List<AirQuality> listaOrdenada = ordenacao.classificar(this.listaDeAirQualities);
+
+        // Imprimir a lista ordenada
+        for (AirQuality filme : listaOrdenada) {
+            System.out.println(filme);
+        }
+
     }
 
     private void inserirRegistro(AirQuality airQuality){
@@ -201,6 +221,7 @@ public class CadastroDeRegistroAr {
         System.out.println("3 - CADASTRO EM LOTE (CSV)");
         System.out.println("4 - PESQUISAR POR ID");
         System.out.println("5 - PESQUISAR POR STATION");
+        System.out.println("6 - ORDERNAR LISTA");
         System.out.println("X - SAIR");
     }
 
